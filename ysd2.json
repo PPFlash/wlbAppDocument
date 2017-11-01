@@ -1,0 +1,4069 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "v1.0.0",
+        "version": "1.0.0",
+        "title": "运输宝接口文档",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "helei5200@126.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "host": "sfdhb.viphk.ngrok.org/MetaFscm",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "user",
+            "description": "用户操作相关!",
+            "externalDocs": {
+                "description": "Find out more about our store",
+                "url": "sfdhb.viphk.ngrok.org/MetaFscm"
+            }
+        },
+        {
+            "name": "Vehicle",
+            "description": "车源车辆操作相关!",
+            "externalDocs": {
+                "description": "Find out more about our store",
+                "url": "sfdhb.viphk.ngrok.org/MetaFscm"
+            }
+        },
+         {
+            "name": "Goods",
+            "description": "货源操作相关!",
+            "externalDocs": {
+                "description": "Find out more about our store",
+                "url": "sfdhb.viphk.ngrok.org/MetaFscm"
+            }
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+       "/wlbApp/user/getCode/{mobile}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "获取验证码",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月7日11:43:09",
+                "operationId": "createUser",
+                
+              "parameters": [
+                    {
+                        "name": "mobile",
+                        "in": "path",
+                        "description": "手机号",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/getCode"
+                        }
+                    }
+                }
+            }
+        },
+        
+         "/wlbApp/user/logOut": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户退出登录",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日11:57:46",
+                "operationId": "createUser",
+                
+              "parameters": [
+                     {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        "/wlbApp/user/login": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户登录",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月7日13:47:19",
+                "operationId": "loginUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "登录信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/log"
+                        }
+                    }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/login"
+                        }
+                    }
+                }
+            }
+        },
+          
+            "/wlbApp/user/editUser": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户编辑资料",
+                "description": "",
+				"author": "叶凡 更新于 2017年7月17日15:20:26",
+                "operationId": "editUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/EditUserForm"
+                        }
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/editUser"
+                        }
+                    },
+                     "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+          "/wlbApp/user/fileUpload": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "上传图片",
+                "description": "",
+				"author": "叶凡 更新于 2017年7月17日15:20:26",
+                "operationId": "editUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/FileUploadForm"
+                        }
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/editUser"
+                        }
+                    },
+                     "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+            "/wlbApp/checkupdate": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "检查更新版本信息",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "checkupdate",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CUReq"
+                        }
+                    }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/CURes"
+                        }
+                    }
+                }
+            }
+        },
+        
+        "/wlbApp/user/aptitude": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户资质认证",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日14:39:22",
+                "operationId": "loginUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "资质认证请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AptitudeForm"
+                        }
+                    }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/aptitude"
+                        }
+                    },
+                     "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        "/wlbApp/user/register": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户注册",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月7日16:40:44",
+                "operationId": "logoutUser",
+                "produces": [
+                    "application/json"
+                ],
+                 "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "注册信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/re"
+                        }
+                    }
+                   
+                ],
+                "responses": {
+                        "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/register"
+                        }
+                    }
+                }
+            }
+        },
+        "/wlbApp/user/modifyPW": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "通过手机验证码修改密码",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月7日16:48:18",
+                "operationId": "getUserByName",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                       {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改密码信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/mo"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "schema": {
+                            "$ref": "#/definitions/modifyPW"
+                        }
+                    }
+                }
+            }
+        },
+        
+          "/wlbApp/user/logModifyPW": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "登录中修改密码",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日14:24:15",
+                "operationId": "getUserByName",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                       {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改密码信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/LogModifyPWForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "返回信息",
+                        "schema": {
+                            "$ref": "#/definitions/logModifyPW"
+                        }
+                    },
+                     "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        
+        "/wlbApp/getVehicleType": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取车辆类型",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日09:27:47",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                    
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/getVehicleType"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        "/wlbApp/addVehicle": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "添加车辆",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日15:31:40",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddVehicleForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+             "/wlbApp/getUserVehicle/{currentPage}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取用户车辆",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日15:54:20",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                {
+                        "name": "currentPage",
+                        "in": "path",
+                        "description": "分页的当前页",
+                        "required": true,
+                        "type": "string"
+                       },
+                      {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/getUserVehicle"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+                "/wlbApp/updateVehicle": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "修改车辆",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日15:31:40",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/AddVehicleForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/updateVehicle"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+         "/wlbApp/getCheList": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "物流宝生产端获取车源列表",
+                "description": "",
+				"author": "叶凡 更新于 2017年7月14日16:21:32",
+                "operationId": "getCheList",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "获取che源参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/gc"
+                        }
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/getUserCarSource"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },  "/wlbApp/addHuoYuan": {
+            "post": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "添加货源",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "addHuoYuan",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "添加货源参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addhReq"
+                        }
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+         "/wlbApp/findHuoYuan/{userId}": {
+            "get": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "查找用户货源",
+                "description": "根据用户id查找货源",
+				"author": "叶凡 更新于2017年7月17日09:41:31",
+                "operationId": "findHuoYuan",
+                "produces": [
+               
+                ],
+                "parameters": [
+                    {
+                      "name": "userId",
+                      "in": "path",
+                      "description": "用户ID",
+                      "required": true,
+                      "type": "string"
+                     },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/findHRes"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },  "/wlbApp/deleteHuo/{ids}": {
+            "get": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "删除货源",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "deleteHuo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                     {
+                      "name": "ids",
+                      "in": "path",
+                      "description": "货源ID(可批量删除多个id用,隔开)",
+                      "required": true,
+                      "type": "string"
+                     },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+         "/wlbApp/getHuoDetail/{id}": {
+            "get": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "得到货源详情",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "getHuoDetail",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                     {
+                      "name": "id",
+                      "in": "path",
+                      "description": "货源ID",
+                      "required": true,
+                      "type": "string"
+                     },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+          "/wlbApp/modifyHuo": {
+            "post": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "修改货源",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "modifyHuo",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改货源参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modifyHReq"
+                        }
+                    },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },  "/wlbApp/recommendChe/{id}": {
+            "get": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "推荐车源",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "recommendChe",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                     {
+                      "name": "id",
+                      "in": "path",
+                      "description": "根据货源ID得到货源详情在推荐合适车源",
+                      "required": true,
+                      "type": "string"
+                     },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },  "/wlbApp/shelvesGoods": {
+            "post": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "货源上下架",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "shelvesGoods",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "货源上下架参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/shelvesGoodsReq"
+                        }
+                    },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": false,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+         "/wlbApp/addAddress": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "添加用户常用地址",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "addAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "添加用户地址参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addressReq"
+                        }
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": false,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+          "/wlbApp/getAddress": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "得到用户常用地址",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "getAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "得到用户地址参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/getaddressReq"
+                        }
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        "/wlbApp/modifyAddress": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "修改用户常用地址信息",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "modifyAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "修改地址参数信息",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/modifyAddress"
+                        }
+                    },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        }, 
+        "/wlbApp/deleteAddress/{ids}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "删除地址",
+                "description": "",
+				"author": "叶凡 更新于2017年7月17日08:55:46",
+                "operationId": "deleteAddress",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                     {
+                      "name": "ids",
+                      "in": "path",
+                      "description": "地址ID(可批量删除多个id用,隔开)",
+                      "required": true,
+                      "type": "string"
+                     },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+                "/wlbApp/deleteVehicle/{Vehicleid}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "删除车辆",
+                "description": "",
+				"author": "彭湃 更新于2017年7月17日15:48:28",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "path",
+                        "name": "Vehicleid",
+                        "description": "车辆ID(可批量删除,格式为[车辆id,车辆id,车辆id..])",
+                        "required": true,
+                        "type": "string"
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+               "/wlbApp/releaseCarSource": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "发布车源信息",
+                "description": "",
+				"author": "彭湃 更新于2017年7月17日16:20:19",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReleaseCarSourceForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+         "/wlbApp/updataCarSource": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "修改车源信息",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日16:27:17",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ReleaseCarSourceForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/updateVehicle"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+            "/wlbApp/deleteCarSource/{carSourceId}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "删除车源",
+                "description": "",
+				"author": "彭湃 更新于2017年7月17日15:48:28",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "path",
+                        "name": "carSourceId",
+                        "description": "车源ID(可批量删除,格式为[车源id,车源id,车源id..])",
+                        "required": true,
+                        "type": "string"
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+              "/wlbApp/getUserCarSource/{currentPage}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取用户车源",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日16:35:05",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "name": "currentPage",
+                        "in": "path",
+                        "description": "分页的当前页",
+                        "required": true,
+                        "type": "string"
+                       },
+                      {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/getUserCarSource"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+          "/wlbApp/getHuoList": {
+            "post": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "运输端获取货源信息",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月17日16:35:05",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                      {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/HuoListForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": false,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/getHuoRes"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+           "/wlbApp/getArea/{areaId}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取地区信息",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日09:27:47",
+                "operationId": "loginUser",
+                "produces": [
+               
+                ],
+                "parameters": [
+                    {
+                      "name": "areaId",
+                      "in": "path",
+                      "description": "地区ID(如果id为'1',则获取所有省级地区)",
+                      "required": true,
+                      "type": "string"
+                     },
+                         {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Area"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+      "/wlbApp/getGoodWfpy": {
+            "get": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "获取货物种类",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日10:34:49",
+                "operationId": "loginUser",
+                "produces": [
+               
+                ],
+                "parameters": [
+                     {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/GoodWfpy"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        "/wlbApp/getGoodCategory": {
+            "get": {
+                "tags": [
+                    "Goods"
+                ],
+                "summary": "获取货物类别",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日10:34:49",
+                "operationId": "loginUser",
+                "produces": [
+               
+                ],
+                "parameters": [
+                     {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/GoodCategory"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        "/wlbApp/getTankMaterial": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取车辆罐体材质",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日09:27:47",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/TankMaterial"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+         "/wlbApp/getCarCKG": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取车辆车辆的长宽高信息",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日09:27:47",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/CarCKG"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+         "/wlbApp/getCapacity": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "获取车辆的载重信息",
+                "description": "",
+				"author": "彭湃 更新于 2017年7月11日09:56:40",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                     {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/Capacity"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        }
+        
+    },
+    "securityDefinitions": {
+        "petstore_auth": {
+            "type": "oauth2",
+            "authorizationUrl": "http://petstore.swagger.io/api/oauth/dialog",
+            "flow": "implicit",
+            "scopes": {
+                "write:pets": "modify pets in your account",
+                "read:pets": "read your pets"
+            }
+        },
+        "api_key": {
+            "type": "apiKey",
+            "name": "api_key",
+            "in": "header"
+        }
+    },
+    "definitions": {
+        "Order": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "petId": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "quantity": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "shipDate": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Order Status",
+                    "enum": [
+                        "placed",
+                        "approved",
+                        "delivered"
+                    ]
+                },
+                "complete": {
+                    "type": "boolean",
+                    "default": false
+                }
+            },
+            "xml": {
+                "name": "Order"
+            }
+        },
+        "Category": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "Category"
+            }
+        },
+        "getCode": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(1:获取成功,2:获取失败)" 
+                        },
+                        "Code":{
+                          "type": "string",
+                          "description":"验证码" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+               "aptitude": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(0:认证类型为null或者不正确,1:认证成功提交)" 
+                        },
+                        "user":{
+                    "description":"用户信息更新" ,
+                    "type": "object",
+                    "properties": {
+                        "token":{
+                          "type": "string",
+                          "description":"token令牌" 
+                        },
+                        "userId":{
+                          "type": "string",
+                          "description":"用户id" 
+                        },
+                        "name":{
+                          "type": "string",
+                          "description":"用户名" 
+                        },
+                        "passwordStrong":{
+                          "type": "string",
+                          "description":"密码强度(1:弱,2:中,3:强)" 
+                        },
+                        "type":{
+                          "type": "string",
+                          "description":"用户类型(1:司机,2:运输企业,3:产生企业))" 
+                        },
+                        "headPortrait":{
+                          "type": "string",
+                          "description":"用户头像" 
+                        },
+                        "mobile":{
+                          "type": "string",
+                          "description":"手机号" 
+                        },
+                        "lastLoginTime":{
+                          "type": "string",
+                          "description":"上次登陆时间" 
+                        },
+                        "hxUserName":{
+                          "type": "string",
+                          "description":"环信ID" 
+                        },
+                        "hxPassWord":{
+                          "type": "string",
+                          "description":"环信PWD" 
+                        },
+                        "state":{
+                          "type": "string",
+                          "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
+                        },
+                        "Scope":{
+                          "type": "string",
+                          "description":"经营范围" 
+                        },
+                        "nickName":{
+                          "type": "string",
+                          "description":"用户编辑资料昵称" 
+                        },
+                        "safeMobile":{
+                          "type": "string",
+                          "description":"用户编辑资料手机号" 
+                        },
+                        "bINumber":{
+                          "type": "string",
+                          "description":"营业执照号" 
+                        },
+                        "bIPath":{
+                          "type": "string",
+                          "description":"营业执照图片保存路径" 
+                        },
+                        "dINumber":{
+                          "type": "string",
+                          "description":"行驶证号 " 
+                        },
+                        "dIPath":{
+                          "type": "string",
+                          "description":"行驶证图片保存路径" 
+                        },
+                        "rTQNumber":{
+                          "type": "string",
+                          "description":"道路运输资质号" 
+                        },
+                        "rTQPath":{
+                          "type": "string",
+                          "description":"道路运输资质图片保存路径" 
+                        },
+                        "dsINumber":{
+                          "type": "string",
+                          "description":"驾驶证号 " 
+                        },
+                        "dTMNumber":{
+                          "type": "string",
+                          "description":"危险品道路运输经营许可证号 " 
+                        },
+                        "dTMPath":{
+                          "type": "string",
+                          "description":"危险品道路运输经营许可证图片保存路径" 
+                        },
+                        "dTQNumber":{
+                          "type": "string",
+                          "description":"危险品运输资格证号" 
+                        },
+                        "dTQPath":{
+                          "type": "string",
+                          "description":"表示危险品运输资格证保存路径" 
+                        },
+                         "auditorId":{
+                          "type": "string",
+                          "description":"审核人ID" 
+                        },
+                         "auditTime":{
+                          "type": "string",
+                          "description":"审核时间" 
+                        },
+                         "remarks":{
+                          "type": "string",
+                          "description":"审核备注" 
+                        }
+                    }
+                }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+           "gc": {
+           "type": "object",
+            "properties": {
+               "currentpageStr":{
+                 "type": "string",
+                 "description":"当前页码(每页显示10条数据)" 
+                    },
+                 "starPlace":{
+                 "type": "string",
+                 "description":"车源地(注:如果是省,则传省,如果是省+市,只传市即可)" 
+                  },
+                  "carName":{
+                  "type": "string",
+                  "description":"车辆类型(如:不锈钢罐车)" 
+                  },
+                 "wfpysParentId":{
+                  "type": "string",
+                  "description":"经营范围(如:001000000)" 
+                 },  
+                 "wfpTotal":{
+                  "type": "string",
+                  "description":"车载重量(如:20-35吨)" 
+                 }
+            },
+            
+            "xml": {
+                "name": "Vehicle"
+            }
+        },
+           "shelvesGoodsReq": {
+           "type": "object",
+            "properties": {
+               " id":{
+                 "type": "string",
+                 "description":"货源id" 
+                    },
+                 "status":{
+                 "type": "string",
+                 "description":"上下架状态(0:下架 1:上架)" 
+                  }
+            },
+            
+            "xml": {
+                "name": "Goods"
+            }
+        },
+                "addressReq": {
+           "type": "object",
+            "properties": {
+              "provinceId":{
+                 "type": "string",
+                 "description":"省id" 
+                    },
+                 "cityId":{
+                 "type": "string",
+                 "description":"市id" 
+                  },
+                  "areaId":{
+                  "type": "string",
+                  "description":"区id" 
+                  },
+                      "provinceName":{
+                  "type": "string",
+                  "description":"省名称" 
+                  },
+                      "cityName":{
+                  "type": "string",
+                  "description":"市名称" 
+                  },
+                      "areaName":{
+                  "type": "string",
+                  "description":"区名称" 
+                  },
+                     "habitatAddress":{
+                  "type": "string",
+                  "description":"详细地址" 
+                  }
+            },
+            
+            "xml": {
+                "name": "user"
+            }
+        },
+           "getaddressReq": {
+           "type": "object",
+            "properties": {
+              "currentpageStr":{
+                 "type": "string",
+                 "description":"当前页" 
+                    }
+            },
+            
+            "xml": {
+                "name": "user"
+            }
+        },
+     
+               "modifyAddress": {
+           "type": "object",
+            "properties": {
+              "id":{
+                 "type": "string",
+                 "description":"地址id" 
+                    },
+               "provinceId":{
+                 "type": "string",
+                 "description":"省id" 
+                    },
+                 "cityId":{
+                 "type": "string",
+                 "description":"市id" 
+                  },
+                  "areaId":{
+                  "type": "string",
+                  "description":"区id" 
+                  },
+                      "provinceName":{
+                  "type": "string",
+                  "description":"省名称" 
+                  },
+                      "cityName":{
+                  "type": "string",
+                  "description":"市名称" 
+                  },
+                      "areaName":{
+                  "type": "string",
+                  "description":"区名称" 
+                  },
+                     "habitatAddress":{
+                  "type": "string",
+                  "description":"详细地址" 
+                  }
+            },
+            
+            "xml": {
+                "name": "user"
+            }
+        },
+        
+            "addhReq": {
+           "type": "object",
+            "properties": {
+               "endTime":{
+                 "type": "string",
+                 "description":"最迟发货时间" 
+                    },
+                 "startPlace":{
+                 "type": "string",
+                 "description":"装货地代码(如:010000)" 
+                  },
+                  "startFullPath":{
+                  "type": "string",
+                  "description":"装货地名称(如:湖南长沙)" 
+                  },
+                     "startHabitatAddress":{
+                  "type": "string",
+                  "description":"装货地详细地址(如:雨花区XX街道)" 
+                  },
+                     "endPlace":{
+                  "type": "string",
+                  "description":"卸货地代码(同上)" 
+                  },
+                     "endFullPath":{
+                  "type": "string",
+                  "description":"卸货地名称" 
+                  },
+                   "endHabitatAddress":{
+                  "type": "string",
+                  "description":"卸货地详细地址" 
+                  },
+                   "supplyName":{
+                  "type": "string",
+                  "description":"货物名称" 
+                  },
+                 "wfpysParentId":{
+                  "type": "string",
+                  "description":"经营范围id(如:001000000)" 
+                 },  
+                  "wfpysName":{
+                  "type": "string",
+                  "description":"经营范围名称(如:一类：爆炸品)" 
+                 }, 
+                  "categoryName":{
+                  "type": "string",
+                  "description":"货物类型" 
+                  },
+                 "wfpTotal":{
+                  "type": "string",
+                  "description":"货物重量(*必须填数字)" 
+                 },
+                 "cargoVolume":{
+                  "type": "string",
+                  "description":"货物体积(*必须填数字)" 
+                 },
+                   "validTime":{
+                  "type": "string",
+                  "description":"有效时限" 
+                 },
+                   "phone":{
+                  "type": "string",
+                  "description":"联系电话" 
+                 },
+                   "linkMan":{
+                  "type": "string",
+                  "description":"联系人" 
+                 },
+                   "content":{
+                  "type": "string",
+                  "description":"备注" 
+                 },
+                   "carLength":{
+                  "type": "string",
+                  "description":"车辆长度" 
+                 },
+                 "carName":{
+                  "type": "string",
+                  "description":"车型" 
+                 },
+                 "tankMaterialName":{
+                  "type": "string",
+                  "description":"罐体材质" 
+                 },
+                 "status":{
+                  "type": "string",
+                  "description":"是否上架" 
+                 }
+            },
+            
+            "xml": {
+                "name": "Goods"
+            }
+        },
+            "modifyHReq": {
+           "type": "object",
+            "properties": {
+             "id":{
+                 "type": "string",
+                 "description":"货源id" 
+                    },
+               "endTime":{
+                 "type": "string",
+                 "description":"最迟发货时间" 
+                    },
+                 "startPlace":{
+                 "type": "string",
+                 "description":"装货地代码" 
+                  },
+                  "startFullPath":{
+                  "type": "string",
+                  "description":"装货地名称" 
+                  },
+                     "startHabitatAddress":{
+                  "type": "string",
+                  "description":"装货地详细地址" 
+                  },
+                     "endPlace":{
+                  "type": "string",
+                  "description":"卸货地代码" 
+                  },
+                     "endFullPath":{
+                  "type": "string",
+                  "description":"卸货地名称" 
+                  },
+                   "endHabitatAddress":{
+                  "type": "string",
+                  "description":"卸货地详细地址" 
+                  },
+                   "supplyName":{
+                  "type": "string",
+                  "description":"货物名称" 
+                  },
+                 "wfpysParentId":{
+                  "type": "string",
+                  "description":"经营范围id" 
+                 },  
+                  "wfpysName":{
+                  "type": "string",
+                  "description":"经营范围名称" 
+                 }, 
+                  "categoryName":{
+                  "type": "string",
+                  "description":"货物类型" 
+                  },
+                 "wfpTotal":{
+                  "type": "string",
+                  "description":"货物重量" 
+                 },
+                 "wfpTotal":{
+                  "type": "string",
+                  "description":"货物重量" 
+                 },
+                 "cargoVolume":{
+                  "type": "string",
+                  "description":"货物体积" 
+                 },
+                   "validTime":{
+                  "type": "string",
+                  "description":"有效时限" 
+                 },
+                   "phone":{
+                  "type": "string",
+                  "description":"联系电话" 
+                 },
+                   "linkMan":{
+                  "type": "string",
+                  "description":"联系人" 
+                 },
+                   "content":{
+                  "type": "string",
+                  "description":"备注" 
+                 },
+                   "carLength":{
+                  "type": "string",
+                  "description":"车辆长度" 
+                 },
+                 "carName":{
+                  "type": "string",
+                  "description":"车型" 
+                 },
+                 "tankMaterialName":{
+                  "type": "string",
+                  "description":"罐体材质" 
+                 },
+                 "status":{
+                  "type": "string",
+                  "description":"是否上架" 
+                 }
+            },
+            
+            "xml": {
+                "name": "Goods"
+            }
+        },
+          "register": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(1:注册成功, 2:手机号已注册, 3:验证码不正确 ,4:密码为空,5:手机号为空 ,6:密码强度不够,0:运行期异常)" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+      
+         "public": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"true(成功),false(失败)" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                 "data":{
+                 "type": "object",
+                  "properties": {}
+                 }
+             },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+                   "findHRes": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "UserVehicle":{
+                          "type": "object",
+                          "description":"用户货源",
+                          "properties": {
+                              "id":{
+                              "type": "string",
+                              "description":"货源id" 
+                              },
+                              "storeId":{
+                              "type": "string",
+                              "description":"企业ID" 
+                              }, 
+                                "endTime":{
+			                 "type": "string",
+			                 "description":"最迟发货时间" 
+			                    },
+			                 "startPlace":{
+			                 "type": "string",
+			                 "description":"装货地代码(如:010000)" 
+			                  },
+			                  "startFullPath":{
+			                  "type": "string",
+			                  "description":"装货地名称(如:湖南长沙)" 
+			                  },
+			                     "startHabitatAddress":{
+			                  "type": "string",
+			                  "description":"装货地详细地址(如:雨花区XX街道)" 
+			                  },
+			                     "endPlace":{
+			                  "type": "string",
+			                  "description":"卸货地代码(同上)" 
+			                  },
+			                     "endFullPath":{
+			                  "type": "string",
+			                  "description":"卸货地名称" 
+			                  },
+			                   "endHabitatAddress":{
+			                  "type": "string",
+			                  "description":"卸货地详细地址" 
+			                  },
+			                   "supplyName":{
+			                  "type": "string",
+			                  "description":"货物名称" 
+			                  },
+			                 "wfpysParentId":{
+			                  "type": "string",
+			                  "description":"经营范围id(如:001000000)" 
+			                 },  
+			                  "wfpysName":{
+			                  "type": "string",
+			                  "description":"经营范围名称(如:一类：爆炸品)" 
+			                 }, 
+			                  "categoryName":{
+			                  "type": "string",
+			                  "description":"货物类型" 
+			                  },
+			                 "wfpTotal":{
+			                  "type": "string",
+			                  "description":"货物重量" 
+			                 },
+			                 "cargoVolume":{
+			                  "type": "string",
+			                  "description":"货物体积" 
+			                 },
+			                   "validTime":{
+			                  "type": "string",
+			                  "description":"有效时限" 
+			                 },
+			                   "phone":{
+			                  "type": "string",
+			                  "description":"联系电话" 
+			                 },
+			                   "linkMan":{
+			                  "type": "string",
+			                  "description":"联系人" 
+			                 },
+			                   "content":{
+			                  "type": "string",
+			                  "description":"备注" 
+			                 },
+			                   "carLength":{
+			                  "type": "string",
+			                  "description":"车辆长度" 
+			                 },
+			                 "carName":{
+			                  "type": "string",
+			                  "description":"车型" 
+			                 },
+			                 "tankMaterialName":{
+			                  "type": "string",
+			                  "description":"罐体材质" 
+			                 },
+			                 "checkTime":{
+			                  "type": "string",
+			                  "description":"审核时间" 
+			                 },
+			                 "checkNote":{
+			                  "type": "string",
+			                  "description":"审核备注" 
+			                 },
+			                 "checkMan":{
+			                  "type": "string",
+			                  "description":"审核人" 
+			                 },
+			                 "checkStatus":{
+			                  "type": "string",
+			                  "description":"罐审核状态 0--未审核 1--已审核 2--审核失败材质" 
+			                 },
+			                 "status":{
+			                  "type": "string",
+			                  "description":"是否上架" 
+			                 }
+                          }
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        
+         "getVehicleType": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "VehicleType":{
+                          "type": "object",
+                          "description":"车辆类型" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                 "GoodWfpy": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "GoodWfpy":{
+                          "type": "object",
+                          "description":"货物种类" ,
+                           "properties": {
+                               "id":{
+                                   "type": "string",
+                                   "description":"货物种类id" 
+                                },
+                                 "name":{
+                                   "type": "string",
+                                   "description":"货物种类名称" 
+                                },
+                                 "descr":{
+                                   "type": "string",
+                                   "description":"货物种类描述" 
+                                },
+                                  "parentId":{
+                                   "type": "string",
+                                   "description":"父ID" 
+                                },
+                                "position":{
+                                   "type": "string",
+                                   "description":"位置" 
+                                },
+                                "fullPath":{
+                                   "type": "string",
+                                   "description":"完整路径" 
+                                }
+                             }
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+"GoodCategory": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "GoodCategory":{
+                          "type": "object",
+                          "description":"车辆的载重信息" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        "re": {
+           "type": "object",
+            "properties": {
+               "password":{
+                 "type": "string",
+                 "description":"用户密码" 
+                    },
+                 "mobile":{
+                 "type": "string",
+                 "description":"手机号" 
+                  },
+                  "type":{
+                  "type": "string",
+                  "description":"注册类型(1:产生企业,4:运输企业)" 
+                  },
+                 "SecurityCode":{
+                  "type": "string",
+                  "description":"验证码" 
+                 }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+         "log": {
+           "type": "object",
+            "properties": {
+               "SecurityCode":{
+                 "type": "string",
+                 "description":"验证码" 
+                    },
+                 "mobile":{
+                 "type": "string",
+                 "description":"手机号或用户名" 
+                  },
+                  "type":{
+                  "type": "string",
+                  "description":"登录类型(0:账号密码登录,1:手机验证码登录)" 
+                  },
+                 "password":{
+                  "type": "string",
+                  "description":"密码" 
+                 }
+               },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        
+         "HuoListForm": {
+           "type": "object",
+            "properties": {
+               "currentpageStr":{
+                 "type": "string",
+                 "description":"分页的当前页" 
+                    },
+                 "starPlace":{
+                 "type": "string",
+                 "description":"车源地" 
+                  },
+                  "carName":{
+                  "type": "string",
+                  "description":"车辆类型" 
+                  },
+                 "wfpysParentId":{
+                  "type": "string",
+                  "description":"经营范围" 
+                 },
+                  "categoryName":{
+                  "type": "string",
+                  "description":"货物类型" 
+                 },
+                  "wfpTotal":{
+                  "type": "string",
+                  "description":"车辆载重" 
+                 },
+                 "carLength":{
+                  "type": "string",
+                  "description":"车长" 
+                 }
+               },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                 "ReleaseCarSourceForm": {
+           "type": "object",
+            "properties": {
+               "id":{
+                 "type": "string",
+                 "description":"车源id" 
+                    },
+                 "status":{
+                 "type": "string",
+                 "description":"(1:上架  ,0:下架)" 
+                  },
+                  "startFullPath":{
+                  "type": "string",
+                  "description":"起始地全路径" 
+                  },
+                 "habitatAddress":{
+                  "type": "string",
+                  "description":"详细地址" 
+                 },
+                 "carNumber":{
+                  "type": "string",
+                  "description":"车牌号码" 
+                 },
+                 "wfpysName":{
+                  "type": "string",
+                  "description":"经营范围" 
+                 },
+                 "carName":{
+                  "type": "string",
+                  "description":"车辆类型" 
+                 },
+                 "endTime":{
+                  "type": "string",
+                  "description":"有效期限" 
+                 },
+                 "tankMaterialName":{
+                  "type": "string",
+                  "description":"罐体材质" 
+                 },
+                 "wfpTotal":{
+                  "type": "string",
+                  "description":"车辆载重" 
+                 },
+                 "unit":{
+                  "type": "string",
+                  "description":"载重单位 " 
+                 },
+                 "carLength":{
+                  "type": "string",
+                  "description":"车身尺寸" 
+                 },
+                 "linkMan":{
+                  "type": "string",
+                  "description":"主车司机姓名" 
+                 },
+                 "phone":{
+                  "type": "string",
+                  "description":"主车司机电话" 
+                 }
+               },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+         "EditUserForm": {
+           "type": "object",
+            "properties": {
+                 "safeMobile":{
+                 "type": "string",
+                 "description":"手机号" 
+                  },
+                  "nickName":{
+                  "type": "string",
+                  "description":"昵称" 
+                  }
+               },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+          "FileUploadForm": {
+           "type": "object",
+            "properties": {
+                "stream":{
+                 "type": "string",
+                 "description":"用户头像二进制数据" 
+                    }
+               },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+          "AptitudeForm": {
+           "type": "object",
+            "properties": {
+               "type":{
+                 "type": "string",
+                 "description":"用户认证类型(1:司机,2:运输企业,3:产生企业)" 
+                    },
+                 "Scope":{
+                 "type": "string",
+                 "description":"经验范围" 
+                  },
+                  "bINumber":{
+                  "type": "string",
+                  "description":"营业执照号" 
+                  },
+                 "bIBD":{
+                  "type": "string",
+                  "description":"营业执照图片二进制数据" 
+                 },
+                  "dINumber":{
+                  "type": "string",
+                  "description":"行驶证号 " 
+                 },
+                  "dIBD":{
+                  "type": "string",
+                  "description":"行驶证图片二进制数据" 
+                 },
+                  "rTQNumber":{
+                  "type": "string",
+                  "description":"道路运输资质号" 
+                 },
+                  "rTQBD":{
+                  "type": "string",
+                  "description":"道路运输资质图片二进制数据" 
+                 },
+                  "dsINumber":{
+                  "type": "string",
+                  "description":"驾驶证号 " 
+                 },
+                  "dsIBD":{
+                  "type": "string",
+                  "description":"驾驶证图片二进制数据" 
+                 },
+                  "dTMNumber":{
+                  "type": "string",
+                  "description":"危险品道路运输经营许可证号" 
+                 },
+                  "dTMBD":{
+                  "type": "string",
+                  "description":"危险品道路运输经营许可证图片二进制数据" 
+                 },
+                  "dTQNumber":{
+                  "type": "string",
+                  "description":"危险品运输资格证号" 
+                 },
+                  "dTQBD":{
+                  "type": "string",
+                  "description":"危险品运输资格证二进制数据" 
+                 }
+               },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        "mo": {
+           "type": "object",
+            "properties": {
+                 "newpassword":{
+                 "type": "string",
+                 "description":"新密码" 
+                  },
+                 "SecurityCode":{
+                 "type": "string",
+                 "description":"验证码" 
+                  },
+                  "mobile":{
+                  "type": "string",
+                  "description":"手机号" 
+                  }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+          "AddVehicleForm": {
+           "type": "object",
+            "properties": {
+                 "id":{
+                 "type": "string",
+                 "description":"车辆id" 
+                  },
+                 "carNumber":{
+                 "type": "string",
+                 "description":"车牌号码" 
+                  },
+                  "wfpysName":{
+                  "type": "string",
+                  "description":"经营范围" 
+                  },
+                   "carName":{
+                  "type": "string",
+                  "description":"车辆类型" 
+                  },
+                   "endTime":{
+                  "type": "string",
+                  "description":"有效期限" 
+                  },
+                   "tankMaterialName":{
+                  "type": "string",
+                  "description":"罐体材质" 
+                  },
+                   "wfpTotal":{
+                  "type": "string",
+                  "description":"车辆载重" 
+                  },
+                   "unit":{
+                  "type": "string",
+                  "description":"载重单位" 
+                  },
+                   "carLength":{
+                  "type": "string",
+                  "description":"车身尺寸" 
+                  },
+                   "linkMan":{
+                  "type": "string",
+                  "description":"主车司机姓名" 
+                  },
+                   "phone":{
+                  "type": "string",
+                  "description":"主车司机电话" 
+                  },
+                  "dIBD":{
+                  "type": "string",
+                  "description":"驾驶证二进制数据" 
+                  },
+                  "rTQBD":{
+                  "type": "string",
+                  "description":"运输证二进制数据" 
+                  }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                 "Capacity": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "Capacity":{
+                          "type": "object",
+                          "description":"车辆的载重信息" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+             "TankMaterial": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "VehicleType":{
+                          "type": "object",
+                          "description":"车辆罐体材质" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+               "CarCKG": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "CarCKG":{
+                          "type": "object",
+                          "description":"车辆的长宽高信息" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                    "Area": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "Area":{
+                          "type": "object",
+                          "description":"地址信息" ,
+                          "properties": {
+                             "id":{
+                               "type": "string",
+                               "description":"地址id" 
+                              },
+                              "areaName":{
+                               "type": "string",
+                               "description":"地区名称" 
+                              },
+                              "areaEnName":{
+                               "type": "string",
+                               "description":"地区英文名" 
+                              },
+                              "areaAbbreviation":{
+                               "type": "string",
+                               "description":"地区简称" 
+                              },
+                              "zipCode":{
+                               "type": "string",
+                               "description":"邮政编码" 
+                              },
+                              "areaCode":{
+                               "type": "string",
+                               "description":"电话前缀" 
+                              },
+                               "parentCode":{
+                               "type": "string",
+                               "description":"上级地区ID" 
+                              },
+                               "pingYin":{
+                               "type": "string",
+                               "description":"" 
+                              },
+                               "childList":{
+                               "type": "object",
+                               "description":"下级地区合集" ,
+                               "properties": {}
+                              }
+                          }
+                       }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+           "modifyPW": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(1:修改成功,2:手机号未注册,3:验证码不正确,4:密码为空,5:手机号为空,6:密码强度不够)" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                   "getUserVehicle": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                    "Pager":{
+                           "type": "object",
+                           "description":"分页信息",
+                           "properties": {
+                                  "fromRow":{
+                              "type": "string",
+                              "description":"查询起始记录" 
+                              },
+                              "toRow":{
+                              "type": "string",
+                              "description":"查询结束记录" 
+                              },
+                               "totalRow":{
+                              "type": "string",
+                              "description":"总记录数" 
+                              },
+                               "currentPage":{
+                              "type": "string",
+                              "description":"当前页面数" 
+                              },
+                               "totalPage":{
+                              "type": "string",
+                              "description":"总页面数" 
+                              },
+                               "rowsPerPage":{
+                              "type": "string",
+                              "description":"每页显示记录数" 
+                              },
+                               "flag":{
+                              "type": "string",
+                              "description":"是否需要翻页" 
+                              }
+                            }
+                      },
+                      "UserVehicle":{
+                          "type": "object",
+                          "description":"用户车辆集合",
+                          "properties": {
+                              "id":{
+                              "type": "string",
+                              "description":"车辆id" 
+                              },
+                              "storeId":{
+                              "type": "string",
+                              "description":"企业ID" 
+                              },
+                               "wfpTotal":{
+                              "type": "string",
+                              "description":"车载" 
+                              },
+                               "createTime":{
+                              "type": "string",
+                              "description":"创建时间" 
+                              },
+                               "updateTime":{
+                              "type": "string",
+                              "description":"更新时间" 
+                              },
+                               "endTime":{
+                              "type": "string",
+                              "description":"有效时间" 
+                              },
+                               "linkMan":{
+                              "type": "string",
+                              "description":"联系人" 
+                              },
+                               "phone":{
+                              "type": "string",
+                              "description":"联系电话" 
+                              },
+                               "storeName":{
+                              "type": "string",
+                              "description":"企业名称" 
+                              },
+                               "unit":{
+                              "type": "string",
+                              "description":"重量单位 " 
+                              },
+                               "carName":{
+                              "type": "string",
+                              "description":"车辆类型" 
+                              },
+                               "tankMaterialName":{
+                              "type": "string",
+                              "description":"罐体材质" 
+                              },
+                               "carLength":{
+                              "type": "string",
+                              "description":"车辆尺寸" 
+                              },
+                               "carNumber":{
+                              "type": "string",
+                              "description":"车牌号" 
+                              },
+                               "dIPath":{
+                              "type": "string",
+                              "description":"行驶证图片保存路径" 
+                              },
+                               "rTQPath":{
+                              "type": "string",
+                              "description":"道路运输资质图片保存路径" 
+                              }
+                          }
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+         "getUserCarSource": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                       "Pager":{
+                           "type": "object",
+                           "description":"分页信息",
+                           "properties": {
+                                  "fromRow":{
+                              "type": "string",
+                              "description":"查询起始记录" 
+                              },
+                              "toRow":{
+                              "type": "string",
+                              "description":"查询结束记录" 
+                              },
+                               "totalRow":{
+                              "type": "string",
+                              "description":"总记录数" 
+                              },
+                               "currentPage":{
+                              "type": "string",
+                              "description":"当前页面数" 
+                              },
+                               "totalPage":{
+                              "type": "string",
+                              "description":"总页面数" 
+                              },
+                               "rowsPerPage":{
+                              "type": "string",
+                              "description":"每页显示记录数" 
+                              },
+                               "flag":{
+                              "type": "string",
+                              "description":"是否需要翻页" 
+                              }
+                            }
+                      },
+                      "UserVehicle":{
+                          "type": "object",
+                          "description":"用户车源集合",
+                          "properties": {
+                              "id":{
+                              "type": "string",
+                              "description":"车源id" 
+                              },
+                              "storeId":{
+                              "type": "string",
+                              "description":"企业ID" 
+                              },
+                               "wfpTotal":{
+                              "type": "string",
+                              "description":"车载" 
+                              },
+                               "createTime":{
+                              "type": "string",
+                              "description":"创建时间" 
+                              },
+                               "updateTime":{
+                              "type": "string",
+                              "description":"更新时间" 
+                              },
+                               "endTime":{
+                              "type": "string",
+                              "description":"有效时间" 
+                              },
+                               "linkMan":{
+                              "type": "string",
+                              "description":"联系人" 
+                              },
+                               "phone":{
+                              "type": "string",
+                              "description":"联系电话" 
+                              },
+                               "storeName":{
+                              "type": "string",
+                              "description":"企业名称" 
+                              },
+                               "unit":{
+                              "type": "string",
+                              "description":"重量单位 " 
+                              },
+                               "carName":{
+                              "type": "string",
+                              "description":"车辆类型" 
+                              },
+                               "tankMaterialName":{
+                              "type": "string",
+                              "description":"罐体材质" 
+                              },
+                               "carLength":{
+                              "type": "string",
+                              "description":"车辆尺寸" 
+                              },
+                               "carNumber":{
+                              "type": "string",
+                              "description":"车牌号" 
+                              },
+                               "status":{
+                              "type": "string",
+                              "description":"状态 (0:下架,1:上架)" 
+                              },
+                               "habitatAddress":{
+                              "type": "string",
+                              "description":"详细地址" 
+                              },
+                              "checkTime":{
+                              "type": "string",
+                              "description":"审核时间" 
+                              },
+                              "checkMan":{
+                              "type": "string",
+                              "description":"审核人" 
+                              },
+                              "checkNote":{
+                              "type": "string",
+                              "description":"审核备注" 
+                              },
+                              "checkStatus":{
+                              "type": "string",
+                              "description":"审核状态 0--未审核 1--已审核 2--审核失败" 
+                              },
+                              "content":{
+                              "type": "string",
+                              "description":"描述" 
+                              },
+                              "startFullPath":{
+                              "type": "string",
+                              "description":"起始地全路径" 
+                              },
+                              "endFullPath":{
+                              "type": "string",
+                              "description":"目的地全路径" 
+                              },
+                              "hxUserName":{
+                              "type": "string",
+                              "description":"环信账号" 
+                              },
+                              "totalRow":{
+                              "type": "string",
+                              "description":"总记录数" 
+                              },
+                              "currentPage":{
+                              "type": "string",
+                              "description":"当前页面数" 
+                              },
+                              "totalPage":{
+                              "type": "string",
+                              "description":"总页面数" 
+                              }
+                           }
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+             
+         "getHuoRes": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "Pager":{
+                           "type": "object",
+                           "description":"分页信息",
+                           "properties": {
+                                  "fromRow":{
+                              "type": "string",
+                              "description":"查询起始记录" 
+                              },
+                              "toRow":{
+                              "type": "string",
+                              "description":"查询结束记录" 
+                              },
+                               "totalRow":{
+                              "type": "string",
+                              "description":"总记录数" 
+                              },
+                               "currentPage":{
+                              "type": "string",
+                              "description":"当前页面数" 
+                              },
+                               "totalPage":{
+                              "type": "string",
+                              "description":"总页面数" 
+                              },
+                               "rowsPerPage":{
+                              "type": "string",
+                              "description":"每页显示记录数" 
+                              },
+                               "flag":{
+                              "type": "string",
+                              "description":"是否需要翻页" 
+                              }
+                            }
+                      },
+                      "CarSource":{
+                          "type": "object",
+                          "description":"货源集合",
+                          "properties": {
+                              "id":{
+                              "type": "string",
+                              "description":"货源id" 
+                              },
+                              "storeId":{
+                              "type": "string",
+                              "description":"企业ID" 
+                              },
+                               "startPlace":{
+                              "type": "string",
+                              "description":"装货地代码" 
+                              },
+                               "endPlace":{
+                              "type": "string",
+                              "description":"卸货地代码" 
+                              },
+                               "name":{
+                              "type": "string",
+                              "description":"运输名称" 
+                              },
+                               "supplyName":{
+                              "type": "string",
+                              "description":"货源名称" 
+                              },
+                               "wfpTotal":{
+                              "type": "string",
+                              "description":"货源重量" 
+                              },
+                               "createTime":{
+                              "type": "string",
+                              "description":"创建时间" 
+                              },
+                               "updateTime":{
+                              "type": "string",
+                              "description":"更新时间" 
+                              },
+                               "endTime":{
+                              "type": "string",
+                              "description":"截止时间 " 
+                              },
+                               "status":{
+                              "type": "string",
+                              "description":"上下架状态" 
+                              },
+                               "checkTime":{
+                              "type": "string",
+                              "description":"审核时间" 
+                              },
+                               "checkMan":{
+                              "type": "string",
+                              "description":"审核人" 
+                              },
+                               "checkNote":{
+                              "type": "string",
+                              "description":"审核备注" 
+                              },
+                               "checkStatus":{
+                              "type": "string",
+                              "description":" 审核状态 0--未审核 1--已审核 2--审核失败" 
+                              },
+                               "linkMan":{
+                              "type": "string",
+                              "description":"联系人" 
+                              },
+                              "phone":{
+                              "type": "string",
+                              "description":"联系电话" 
+                              },
+                              "content":{
+                              "type": "string",
+                              "description":"描述" 
+                              },
+                              "startFullPath":{
+                              "type": "string",
+                              "description":"装货地全路径" 
+                              },
+                              "endFullPath":{
+                              "type": "string",
+                              "description":"卸货地全路径" 
+                              },
+                              "storeName":{
+                              "type": "string",
+                              "description":"企业名称" 
+                              },
+                              "unit":{
+                              "type": "string",
+                              "description":"单位 默认为吨" 
+                              },
+                              "carName":{
+                              "type": "string",
+                              "description":"车辆类型" 
+                              },
+                              
+                               "categoryName":{
+                              "type": "string",
+                              "description":"货物类别名称" 
+                              }, 
+                              "tankMaterialName":{
+                              "type": "string",
+                              "description":"罐体材质" 
+                              }, 
+                              "wfpysName":{
+                              "type": "string",
+                              "description":"危废品运输界定名称" 
+                              }, 
+                              "carLength":{
+                              "type": "string",
+                              "description":"车长" 
+                              }, 
+                              "cargoVolume":{
+                              "type": "string",
+                              "description":"货物体积" 
+                              },
+                               "validTime":{
+                              "type": "string",
+                              "description":"有效时限" 
+                              },
+                                 "startHabitatAddress":{
+                              "type": "string",
+                              "description":"装货详细地址" 
+                              },
+                                 "endHabitatAddress":{
+                              "type": "string",
+                              "description":"卸货详细地址" 
+                              },
+                              "hxUserName":{
+                              "type": "string",
+                              "description":"环信账号" 
+                              },
+                              "totalRow":{
+                              "type": "string",
+                              "description":"总记录数" 
+                              },
+                              "currentPage":{
+                              "type": "string",
+                              "description":"当前页面数" 
+                              },
+                              "totalPage":{
+                              "type": "string",
+                              "description":"总页面数" 
+                              }
+                           }
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        
+         "updateVehicle": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(0:车辆或车源不存在,1:修改成功)" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+             "logModifyPW": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(0:用户不存在 ,1:修改成功 ,2:密码错误)" 
+                        }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+          "LogModifyPWForm": {
+           "type": "object",
+            "properties": {
+                "password": {
+                    "type": "string",
+                    "description":"旧密码" 
+                 },
+                "newpassword":{
+                   "type": "string",
+                   "description":"新密码" 
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        
+            "login": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码( 0:未确认登录类型 ,1:登录成功,2:用户名密码不正确 ,3:验证码不正确 ,4:密码为空 ,5:手机号或用户名为空)" 
+                        },
+                         "user":{
+                    "description":"用户信息" ,
+                    "type": "object",
+                    "properties": {
+                        "token":{
+                          "type": "string",
+                          "description":"token令牌" 
+                        },
+                        "userId":{
+                          "type": "string",
+                          "description":"用户id" 
+                        },
+                        "name":{
+                          "type": "string",
+                          "description":"用户名" 
+                        },
+                        "passwordStrong":{
+                          "type": "string",
+                          "description":"密码强度(1:弱,2:中,3:强)" 
+                        },
+                        "type":{
+                          "type": "string",
+                          "description":"用户类型(1:司机,2:运输企业,3:产生企业)" 
+                        },
+                        "headPortrait":{
+                          "type": "string",
+                          "description":"用户头像" 
+                        },
+                        "mobile":{
+                          "type": "string",
+                          "description":"手机号" 
+                        },
+                        "lastLoginTime":{
+                          "type": "string",
+                          "description":"上次登陆时间" 
+                        },
+                        "hxUserName":{
+                          "type": "string",
+                          "description":"环信ID" 
+                        },
+                        "hxPassWord":{
+                          "type": "string",
+                          "description":"环信PWD" 
+                        },
+                        "state":{
+                          "type": "string",
+                          "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
+                        },
+                        "Scope":{
+                          "type": "string",
+                          "description":"经营范围" 
+                        },
+                        "nickName":{
+                          "type": "string",
+                          "description":"用户编辑资料昵称" 
+                        },
+                        "safeMobile":{
+                          "type": "string",
+                          "description":"用户编辑资料手机号" 
+                        },
+                        "bINumber":{
+                          "type": "string",
+                          "description":"营业执照号" 
+                        },
+                        "bIPath":{
+                          "type": "string",
+                          "description":"营业执照图片保存路径" 
+                        },
+                        "dINumber":{
+                          "type": "string",
+                          "description":"行驶证号 " 
+                        },
+                        "dIPath":{
+                          "type": "string",
+                          "description":"行驶证图片保存路径" 
+                        },
+                        "rTQNumber":{
+                          "type": "string",
+                          "description":"道路运输资质号" 
+                        },
+                        "rTQPath":{
+                          "type": "string",
+                          "description":"道路运输资质图片保存路径" 
+                        },
+                        "dsINumber":{
+                          "type": "string",
+                          "description":"驾驶证号 " 
+                        },
+                        "dTMNumber":{
+                          "type": "string",
+                          "description":"危险品道路运输经营许可证号 " 
+                        },
+                        "dTMPath":{
+                          "type": "string",
+                          "description":"危险品道路运输经营许可证图片保存路径" 
+                        },
+                        "dTQNumber":{
+                          "type": "string",
+                          "description":"危险品运输资格证号" 
+                        },
+                        "dTQPath":{
+                          "type": "string",
+                          "description":"表示危险品运输资格证保存路径" 
+                        },
+                         "auditorId":{
+                          "type": "string",
+                          "description":"审核人ID" 
+                        },
+                         "auditTime":{
+                          "type": "string",
+                          "description":"审核时间" 
+                        },
+                         "remarks":{
+                          "type": "string",
+                          "description":"审核备注" 
+                        }
+                    }
+                }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                    "editUser": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"" 
+                        },
+                         "user":{
+                    "description":"更新用户信息" ,
+                    "type": "object",
+                    "properties": {
+                        "token":{
+                          "type": "string",
+                          "description":"token令牌" 
+                        },
+                        "userId":{
+                          "type": "string",
+                          "description":"用户id" 
+                        },
+                        "name":{
+                          "type": "string",
+                          "description":"用户名" 
+                        },
+                        "passwordStrong":{
+                          "type": "string",
+                          "description":"密码强度(1:弱,2:中,3:强)" 
+                        },
+                        "type":{
+                          "type": "string",
+                          "description":"用户类型(1:司机,2:运输企业,3:产生企业)" 
+                        },
+                        "headPortrait":{
+                          "type": "string",
+                          "description":"用户头像" 
+                        },
+                        "mobile":{
+                          "type": "string",
+                          "description":"手机号" 
+                        },
+                        "lastLoginTime":{
+                          "type": "string",
+                          "description":"上次登陆时间" 
+                        },
+                        "hxUserName":{
+                          "type": "string",
+                          "description":"环信ID" 
+                        },
+                        "hxPassWord":{
+                          "type": "string",
+                          "description":"环信PWD" 
+                        },
+                        "state":{
+                          "type": "string",
+                          "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
+                        },
+                        "Scope":{
+                          "type": "string",
+                          "description":"经营范围" 
+                        },
+                        "nickName":{
+                          "type": "string",
+                          "description":"用户编辑资料昵称" 
+                        },
+                        "safeMobile":{
+                          "type": "string",
+                          "description":"用户编辑资料手机号" 
+                        },
+                        "bINumber":{
+                          "type": "string",
+                          "description":"营业执照号" 
+                        },
+                        "bIPath":{
+                          "type": "string",
+                          "description":"营业执照图片保存路径" 
+                        },
+                        "dINumber":{
+                          "type": "string",
+                          "description":"行驶证号 " 
+                        },
+                        "dIPath":{
+                          "type": "string",
+                          "description":"行驶证图片保存路径" 
+                        },
+                        "rTQNumber":{
+                          "type": "string",
+                          "description":"道路运输资质号" 
+                        },
+                        "rTQPath":{
+                          "type": "string",
+                          "description":"道路运输资质图片保存路径" 
+                        },
+                        "dsINumber":{
+                          "type": "string",
+                          "description":"驾驶证号 " 
+                        },
+                        "dTMNumber":{
+                          "type": "string",
+                          "description":"危险品道路运输经营许可证号 " 
+                        },
+                        "dTMPath":{
+                          "type": "string",
+                          "description":"危险品道路运输经营许可证图片保存路径" 
+                        },
+                        "dTQNumber":{
+                          "type": "string",
+                          "description":"危险品运输资格证号" 
+                        },
+                        "dTQPath":{
+                          "type": "string",
+                          "description":"表示危险品运输资格证保存路径" 
+                        },
+                         "auditorId":{
+                          "type": "string",
+                          "description":"审核人ID" 
+                        },
+                         "auditTime":{
+                          "type": "string",
+                          "description":"审核时间" 
+                        },
+                         "remarks":{
+                          "type": "string",
+                          "description":"审核备注" 
+                        }
+                    }
+                }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                "CURes": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"" 
+                        },
+                         "version":{
+                    "description":"版本响应信息" ,
+                    "type": "object",
+                    "properties": {
+                        "desc":{
+                          "type": "string",
+                          "description":"版本描述" 
+                        },
+                        "status":{
+                          "type": "string",
+                          "description":"状态(true:成功)" 
+                        },
+                        "verNum":{
+                          "type": "string",
+                          "description":"版本号" 
+                        },
+                        "newVersion":{
+                          "type": "string",
+                          "description":"是否为最新版本(1:最新)" 
+                        },
+                        "url":{
+                          "type": "string",
+                          "description":"下载地址" 
+                        }
+                    }
+                }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        "Tag": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                }
+            },
+            "xml": {
+                "name": "Tag"
+            }
+        },
+        "Pet": {
+            "type": "object",
+            "required": [
+                "name",
+                "photoUrls"
+            ],
+            "properties": {
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "category": {
+                    "$ref": "#/definitions/Category"
+                },
+                "name": {
+                    "type": "string",
+                    "example": "doggie"
+                },
+                "photoUrls": {
+                    "type": "array",
+                    "xml": {
+                        "name": "photoUrl",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "tags": {
+                    "type": "array",
+                    "xml": {
+                        "name": "tag",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "$ref": "#/definitions/Tag"
+                    }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "pet status in the store",
+                    "enum": [
+                        "available",
+                        "pending",
+                        "sold"
+                    ]
+                }
+            },
+            "xml": {
+                "name": "Pet"
+            }
+        },
+        "ApiResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "description": "",
+        "url": ""
+    }
+}
