@@ -13,7 +13,7 @@
             "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
         }
     },
-    "host": "localhost:8088/MetaFscm",
+    "host": "wlb.viphk.ngrok.org/MetaFscm",
     "basePath": "",
     "tags": [
         {
@@ -21,7 +21,7 @@
             "description": "用户操作相关!",
             "externalDocs": {
                 "description": "Find out more about our store",
-                "url":"localhost:8088/MetaFscm"
+                "url":"wlb.viphk.ngrok.org/MetaFscm"
             }
         },
         {
@@ -29,7 +29,7 @@
             "description": "车源车辆操作相关!",
             "externalDocs": {
                 "description": "Find out more about our store",
-                "url": "localhost:8088/MetaFscm"
+                "url": "wlb.viphk.ngrok.org/MetaFscm"
             }
         },
          {
@@ -37,7 +37,7 @@
             "description": "货源操作相关!",
             "externalDocs": {
                 "description": "Find out more about our store",
-                "url": "localhost:8088/MetaFscm"
+                "url": "wlb.viphk.ngrok.org/MetaFscm"
             }
         },
         {
@@ -45,7 +45,7 @@
             "description": "系统操作相关!",
             "externalDocs": {
                 "description": "Find out more about our store",
-                "url": "localhost:8088/MetaFscm"
+                "url": "wlb.viphk.ngrok.org/MetaFscm"
             }
         }
     ],
@@ -81,7 +81,7 @@
             }
         },
         
-          "/wlbApp/addAttention/{friendId}": {
+              "/wlbApp/addAttention/{friendId}": {
             "get": {
                 "tags": [
                     "user"
@@ -118,6 +118,123 @@
                 }
             }
         },
+        
+        
+         "/wlbApp/deleteAttention/{friendId}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "用户取消关注对象",
+                "description": "",
+				"author": "叶凡 更新于 2017年11月1日15:27:57",
+                "operationId": "createUser",
+                
+              "parameters": [
+                  
+                     {
+                        "in": "path",
+                        "name": "friendId",
+                        "description": "取消被关注用户id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "请求成功"
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+            "/wlbApp/getAllAttention/{currentpageStr}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "获取用户所有关注对象",
+                "description": "",
+				"author": "叶凡 更新于 2017年11月1日15:27:57",
+                "operationId": "createUser",
+                
+              "parameters": [
+                  
+                     {
+                        "in": "path",
+                        "name": "currentpageStr",
+                        "description": "当前页",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                "responses": {
+                   "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/allAttention"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        
+           "/wlbApp/getTuiSongMessage": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "获取用户关注对象推送的消息列表",
+                "description": "",
+				"author": "叶凡 更新于 2017年11月1日15:27:57",
+                "operationId": "createUser",
+                
+              "parameters": [
+                  
+                  
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                "responses": {
+                   "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/tuiSongMessage"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
         
         "/wlbApp/user/share/{wftransportIds}": {
             "get": {
@@ -192,7 +309,7 @@
             }
         },
     
-       "/wlbApp/user/getCode/{mobile}": {
+       "/wlbApp/user/getCode/{mobile}/{type}": {
             "get": {
                 "tags": [
                     "user"
@@ -207,6 +324,13 @@
                         "name": "mobile",
                         "in": "path",
                         "description": "手机号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "type",
+                        "in": "path",
+                        "description": "获取类型(1:其他,2:用户注册,3:找回密码)",
                         "required": true,
                         "type": "string"
                     }
@@ -578,8 +702,8 @@
             }
         },
         
-         "/wlbApp/user/getBargain/{userType}/{bargainType}/{sellerContactState}/{currentPage}": {
-            "get": {
+         "/wlbApp/user/getBargain": {
+            "post": {
                 "tags": [
                     "user"
                 ],
@@ -592,33 +716,14 @@
                 ],
                 "parameters": [
                     {
-                      "name": "userType",
-                      "in": "path",
-                      "description": " 用户类型(1:运输端,2:产生端)",
-                      "required": true,
-                      "type": "string"
-                     },
-                     {
-                      "name": "bargainType",
-                      "in": "path",
-                      "description": "议价类型 (1:我的议价,2:对我议价)",
-                      "required": true,
-                      "type": "string"
-                     },
-                      {
-                      "name": "sellerContactState",
-                      "in": "path",
-                      "description": "联系状态(0:未联系 1:已联系 其他业务不想要联系状态可填非0非1任何值)",
-                      "required": true,
-                      "type": "string"
-                     },
-                      {
-                      "name": "currentPage",
-                      "in": "path",
-                      "description": "分页的当前页",
-                      "required": true,
-                      "type": "string"
-                     },
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetBargainForm"
+                        }
+                    },
                     {
                         "name": "WLB-Token",
                         "in": "header",
@@ -641,8 +746,8 @@
             }
         },
         
-          "/wlbApp/user/getUserBargain/{wftransportIds}/{bargainType}/{sellerContactState}/{currentPage}": {
-            "get": {
+          "/wlbApp/user/getUserBargain": {
+            "post": {
                 "tags": [
                     "user"
                 ],
@@ -654,34 +759,15 @@
                     "application/json"
                 ],
                 "parameters": [
-                    {
-                      "name": "wftransportIds",
-                      "in": "path",
-                      "description": " 商品id",
-                      "required": true,
-                      "type": "string"
-                     },
-                     {
-                      "name": "bargainType",
-                      "in": "path",
-                      "description": "议价类型 (1:我的议价,2:对我议价)",
-                      "required": true,
-                      "type": "string"
-                     },
-                      {
-                      "name": "sellerContactState",
-                      "in": "path",
-                      "description": "联系状态(0:未联系 1:已联系 其他业务不想要联系状态可填非0非1任何值)",
-                      "required": true,
-                      "type": "string"
-                     },
-                        {
-                      "name": "currentPage",
-                      "in": "path",
-                      "description": "分页的当前页",
-                      "required": true,
-                      "type": "string"
-                     },
+                   {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/GetBargainForm"
+                        }
+                    },
                     {
                         "name": "WLB-Token",
                         "in": "header",
@@ -998,6 +1084,50 @@
                         "description": "请求成功",
                         "schema": {
                             "$ref": "#/definitions/public"
+                        }
+                    },
+                    "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        "/wlbApp/carNoRepeat": {
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "添加车辆是否车牌号重复",
+                "description": "",
+				"author": "彭湃 更新于 2017年8月21日14:35:52",
+                "operationId": "loginUser",
+                "produces": [
+                 
+                ],
+                "parameters": [
+                       {
+                        "in": "body",
+                        "name": "body",
+                        "description": "请求参数",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/CarNoRepeatForm"
+                        }
+                       },
+                       {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                       }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/carNoRepeat"
                         }
                     },
                     "401":{
@@ -1914,6 +2044,66 @@
                 }
             }
         },
+        
+                        "/wlbapp/bespeak/{type}/{bargainId}/{states}": {
+            "get": {
+                "tags": [
+                    "user"
+                ],
+                "summary": "物流宝被询价议价的车源货源是否接受询价or议价",
+                "description": "",
+				"author": "彭湃 更新于 2017年11月2日15:03:04",
+                "operationId": "editUser",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                      "name": "type",
+                      "in": "path",
+                      "description": "商品类型(0:车源,1:货源)",
+                      "required": true,
+                      "type": "string"
+                     },
+                     {
+                      "name": "bargainId",
+                      "in": "path",
+                      "description": "询价ID",
+                      "required": true,
+                      "type": "string"
+                     },
+                      {
+                      "name": "states",
+                      "in": "path",
+                      "description": "是否接受(1:接受;2:不接受)",
+                      "required": true,
+                      "type": "string"
+                     },
+                    {
+                        "name": "WLB-Token",
+                        "in": "header",
+                        "description": "用户token",
+                        "required": true,
+                        "type": "string"
+                     }
+                ],
+                 "responses": {
+                    "200": {
+                        "description": "请求成功",
+                        "schema": {
+                            "$ref": "#/definitions/bespeak"
+                        }
+                    },
+                     "401":{
+                      "description": "未授权[无token、token错误、token过期]"
+                    }
+                }
+            }
+        },
+        
+        
+        
+        
         "/wlbApp/getGoodCategory": {
             "get": {
                 "tags": [
@@ -2100,7 +2290,7 @@
                     "properties": {
                       "statusCode":{
                           "type": "string",
-                          "description":"业务状态码(1:获取成功,2:获取失败)" 
+                          "description":"业务状态码(0:获取失败,1:获取成功,2:手机号已注册,3:手机号未注册)" 
                         },
                         "Code":{
                           "type": "string",
@@ -2187,10 +2377,17 @@
                           "type": "string",
                           "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
                         },
-                        "Scope":{
-                          "type": "string",
-                          "description":"经营范围" 
-                        },
+                        "Scope": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "scope",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                         "nickName":{
                           "type": "string",
                           "description":"用户编辑资料昵称" 
@@ -2321,17 +2518,38 @@
                  "type": "string",
                  "description":"目的地区级id" 
                   },
-                  "carName":{
-                  "type": "string",
-                  "description":"车辆类型(可传多个用,隔开 )" 
-                  },
-                 "wfpysParentId":{
-                  "type": "string",
-                  "description":"经营范围(可传多个用,隔开 如:006000000,008000000)" 
-                 },  
-                 "wfpTotal":{
-                  "type": "string",
-                  "description":"车载重量(如:20-35吨)" 
+                 "carName": {
+                    "type": "array",
+                    "description":"车辆类型",
+                    "xml": {
+                        "name": "carName",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                 "wfpysParentId": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "wfpysParentId",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                 "wfpTotal": {
+                    "type": "array",
+                    "description":"车辆载重",
+                    "xml": {
+                        "name": "wfpTotal",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
                  },
                  "latitude":{
                   "type": "string",
@@ -2353,7 +2571,7 @@
             "properties": {
                "type":{
                  "type": "string",
-                 "description":"APP类型(0:车app 1:货app)" 
+                 "description":"APP类型((0:运输IOS;1:运输Android;2:产生IOS;3:产生Android))" 
                     },
                  "num":{
                  "type": "string",
@@ -2529,17 +2747,31 @@
                  "type": "string",
                  "description":"目的地区级id" 
                   },
-                  "startFullPath":{
-                  "type": "string",
-                  "description":"装货地名称(如:湖南长沙)" 
-                  },
-                     "startHabitatAddress":{
+                  "startFullPath": {
+                    "type": "array",
+                    "description":"装货地",
+                    "xml": {
+                        "name": "startFullPath",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                 "endFullPath": {
+                    "type": "array",
+                    "description":"卸货地",
+                    "xml": {
+                        "name": "endFullPath",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                   "startHabitatAddress":{
                   "type": "string",
                   "description":"装货地详细地址(如:雨花区XX街道)" 
-                  },
-                     "endFullPath":{
-                  "type": "string",
-                  "description":"卸货地名称" 
                   },
                    "endHabitatAddress":{
                   "type": "string",
@@ -2636,6 +2868,45 @@
                 "name": "Goods"
             }
         },
+        
+          "GetBargainForm": {
+           "type": "object",
+            "properties": {
+             "userType":{
+                 "type": "string",
+                 "description":"用户类型(1:运输端,2:产生端)" 
+                    },
+                 "bargainType":{
+                  "type": "string",
+                  "description":"是议价类型 (1:我的议价,2:对我议价)" 
+                 },
+                 "sellerContactState":{
+                 "type": "string",
+                 "description":"联系状态(0:未联系 1:已联系 其他业务不想要联系状态可填非0非1任何值)" 
+                    },
+                 "currentPage":{
+                  "type": "string",
+                  "description":"分页的当前页" 
+                 },
+                 "wftransportIds":{
+                  "type": "string",
+                  "description":"商品id" 
+                 },
+                 "latitude":{
+                  "type": "string",
+                  "description":"用户当前维度" 
+                 },
+                 "longitude":{
+                  "type": "string",
+                  "description":"用户当前经度" 
+                 }
+            },
+            
+            "xml": {
+                "name": "user"
+            }
+        },
+        
             "modifyHReq": {
            "type": "object",
             "properties": {
@@ -2671,17 +2942,31 @@
                  "type": "string",
                  "description":"目的地区级id" 
                   },
-                  "startFullPath":{
-                  "type": "string",
-                  "description":"装货地名称(如:湖南长沙)" 
-                  },
-                     "startHabitatAddress":{
+                  "startFullPath": {
+                    "type": "array",
+                    "description":"装货地",
+                    "xml": {
+                        "name": "startFullPath",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                  "endFullPath": {
+                    "type": "array",
+                    "description":"卸货地",
+                    "xml": {
+                        "name": "endFullPath",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                  "startHabitatAddress":{
                   "type": "string",
                   "description":"装货地详细地址(如:雨花区XX街道)" 
-                  },
-                     "endFullPath":{
-                  "type": "string",
-                  "description":"卸货地名称" 
                   },
                    "endHabitatAddress":{
                   "type": "string",
@@ -2859,6 +3144,8 @@
         },
              
               
+              
+              
           "userBargainList": {
            "type": "object",
             "properties": {
@@ -2938,16 +3225,21 @@
                               "description":"货源Id(商品id等)" 
                               },
                                "startFullPaths":{
-                              "type": "string",
-                              "description":"议价起始地" 
+                              "type": "list",
+                              "description":"议价起始地数组" 
                               },
                               "endFullPaths":{
-                              "type": "string",
-                              "description":"议价目的地" 
+                              "type": "list",
+                              "description":"议价目的地数组" 
                               },
                               "price":{
                               "type": "string",
                               "description":"价格" 
+                              },
+                              
+                              "priceUnit":{
+                              "type": "string",
+                              "description":"价格单位" 
                               },
                               "contactMan":{
                               "type": "string",
@@ -2980,6 +3272,18 @@
                               "userRemarks":{
                               "type": "string",
                               "description":"用户备注信息" 
+                              },
+                              "commodityDistance":{
+                              "type": "string",
+                              "description":"商品距离" 
+                              },
+                              "distanceMe":{
+                              "type": "string",
+                              "description":"离我距离" 
+                              },
+                              "ifAccept":{
+                              "type": "string",
+                              "description":"是否接受询价议价(0:没有接受,也未拒绝;1:已接受;2:已拒绝)" 
                               },
                               "Goods":{
                               "type": "object",
@@ -3073,14 +3377,6 @@
                                   "type": "string",
                                   "description":"描述" 
                                   },
-                                  "startFullPath":{
-                                  "type": "string",
-                                  "description":"装货地全路径" 
-                                  },
-                                  "endFullPath":{
-                                  "type": "string",
-                                  "description":"卸货地全路径" 
-                                  },
                                   "storeName":{
                                   "type": "string",
                                   "description":"企业名称" 
@@ -3101,11 +3397,7 @@
                                   "tankMaterialName":{
                                   "type": "string",
                                   "description":"罐体材质" 
-                                  }, 
-                                  "wfpysName":{
-                                  "type": "string",
-                                  "description":"危废品运输界定名称" 
-                                   }, 
+                                  },
                                   "carLength":{
                                   "type": "string",
                                   "description":"车长" 
@@ -3118,6 +3410,22 @@
                                   "type": "string",
                                   "description":"有效时限" 
                                   },
+                                  "wfpysList":{
+                  "type": "list",
+                  "description":"经营范围列表" 
+                  },
+                  "wfpysParentId":{
+                  "type": "list",
+                  "description":"危废品运输界定ID列表" 
+                  },
+                   "startList":{
+                  "type": "list",
+                  "description":"出发地列表" 
+                  },
+                  "endList":{
+                  "type": "list",
+                  "description":"目的地列表" 
+                  },
                                  "startHabitatAddress":{
                                  "type": "string",
                                  "description":"装货详细地址" 
@@ -3125,11 +3433,7 @@
                                  "endHabitatAddress":{
                                  "type": "string",
                                  "description":"卸货详细地址" 
-                                 },
-                                 "hxUserName":{
-                                 "type": "string",
-                                  "description":"环信账号" 
-                                  }
+                                 }
                                 } 
                               },
                               "carSource":{
@@ -3220,14 +3524,6 @@
                               "type": "string",
                               "description":"描述" 
                               },
-                              "startFullPath":{
-                              "type": "string",
-                              "description":"起始地全路径" 
-                              },
-                              "endFullPath":{
-                              "type": "string",
-                              "description":"目的地全路径" 
-                              },
                               "startProvinceId":{
                               "type": "string",
                               "description":" 出发地省级id" 
@@ -3248,25 +3544,25 @@
                               "type": "string",
                               "description":"出发地区级id" 
                               },
+                              "wfpysList":{
+                                "type": "list",
+                                "description":"经营范围列表" 
+                              },
+                              "wfpysParentId":{
+                                "type": "list",
+                                "description":"危废品运输界定ID列表" 
+                              },
+                              "startList":{
+                                   "type": "list",
+                                  "description":"出发地列表" 
+                              },
+                                 "endList":{
+                                 "type": "list",
+                                 "description":"目的地列表" 
+                              },
                               "endAreaId":{
                               "type": "string",
                               "description":"目的地区级id" 
-                              },
-                              "hxUserName":{
-                              "type": "string",
-                              "description":"环信账号" 
-                              },
-                              "wfpysParentId":{
-                              "type": "string",
-                              "description":"危废品运输界定父类ID" 
-                              },
-                              "wfpysId":{
-                              "type": "string",
-                              "description":"危废品运输界定二级ID" 
-                              },
-                              "wfpysName":{
-                              "type": "string",
-                              "description":"危废品运输界定名称" 
                               }
                                }
                               }
@@ -3308,6 +3604,40 @@
                 "name": "User"
             }
         },
+        
+        "carNoRepeat": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                 "data":{
+                 "type": "object",
+                  "properties": {
+                     "statusCode":{
+                          "type": "string",
+                          "description":"0:已重复,1:未重复" 
+                      }
+                   }
+                 }
+             },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
                    "findHRes": {
            "type": "object",
             "properties": {
@@ -3348,10 +3678,6 @@
 			                 "type": "string",
 			                 "description":"装货地代码(如:010000)" 
 			                  },
-			                  "startFullPath":{
-			                  "type": "string",
-			                  "description":"装货地名称(如:湖南长沙)" 
-			                  },
 			                     "startHabitatAddress":{
 			                  "type": "string",
 			                  "description":"装货地详细地址(如:雨花区XX街道)" 
@@ -3359,10 +3685,6 @@
 			                     "endPlace":{
 			                  "type": "string",
 			                  "description":"卸货地代码(同上)" 
-			                  },
-			                     "endFullPath":{
-			                  "type": "string",
-			                  "description":"卸货地名称" 
 			                  },
 			                   "endHabitatAddress":{
 			                  "type": "string",
@@ -3372,14 +3694,6 @@
 			                  "type": "string",
 			                  "description":"货物名称" 
 			                  },
-			                 "wfpysParentId":{
-			                  "type": "string",
-			                  "description":"经营范围id(如:001000000)" 
-			                 },  
-			                  "wfpysName":{
-			                  "type": "string",
-			                  "description":"经营范围名称(如:一类：爆炸品)" 
-			                 }, 
 			                  "categoryName":{
 			                  "type": "string",
 			                  "description":"货物类型" 
@@ -3452,18 +3766,15 @@
 			                  "type": "string",
 			                  "description":"是否上架" 
 			                 },
-			                     "hxUserName":{
-			                  "type": "string",
-			                  "description":"环信名" 
-			                 },
-			                  "registrationID":{
-                          "type": "string",
-                          "description":"极光推送的设备唯一性标识" 
-                        },
-			                     "wfpysList":{
+			                   "wfpysList":{
 			                  "type": "List",
 			                  "description":"经营范围集合" 
 			                 },
+			                 
+			                 "wfpysParentId":{
+			                  "type": "list",
+			                  "description":"经营范围id列表" 
+			                 },  
 			                     "startList":{
 			                  "type": "List",
 			                  "description":"出发地省市区集合" 
@@ -3754,25 +4065,49 @@
                  "type": "string",
                  "description":"目的地区级id" 
                   },
-                  "carName":{
-                  "type": "string",
-                  "description":"车辆类型(可传多个,用,隔开)" 
-                  },
-                 "wfpysParentId":{
-                  "type": "string",
-                  "description":"经营范围(可传多个,用,隔开)" 
+                  "wfpysParentId": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "wfpysParentId",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
                  },
-                  "categoryName":{
-                  "type": "string",
-                  "description":"货物类型" 
+                 "wfpTotal": {
+                    "type": "array",
+                    "description":"车辆载重",
+                    "xml": {
+                        "name": "wfpTotal",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
                  },
-                  "wfpTotal":{
-                  "type": "string",
-                  "description":"车辆载重" 
+                 "carLength": {
+                    "type": "array",
+                    "description":"车长",
+                    "xml": {
+                        "name": "carLength",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
                  },
-                 "carLength":{
-                  "type": "string",
-                  "description":"车长" 
+                 "carName": {
+                    "type": "array",
+                    "description":"车辆类型",
+                    "xml": {
+                        "name": "carName",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
                  },
                  "sizeUnit":{
                     "type": "string",
@@ -3812,17 +4147,35 @@
                  "type": "string",
                  "description":"货物名称" 
                   },
-                  "startFullPaths":{
-                 "type": "string",
-                 "description":"议价起始地" 
-                  },
-                  "endFullPaths":{
-                 "type": "string",
-                 "description":"议价目的地" 
-                  },
+                  "startFullPaths": {
+                    "type": "array",
+                    "description":"议价起始地",
+                    "xml": {
+                        "name": "startFullPaths",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                 "endFullPaths": {
+                    "type": "array",
+                    "description":"议价目的地",
+                    "xml": {
+                        "name": "endFullPaths",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                   "price":{
                  "type": "string",
                  "description":"价格" 
+                  },
+                  "priceUnit":{
+                 "type": "string",
+                 "description":"价格单位" 
                   },
                   "contactMan":{
                  "type": "string",
@@ -3880,14 +4233,50 @@
                  "type": "string",
                  "description":"(1:上架  ,0:下架)" 
                   },
-                  "startFullPath":{
-                  "type": "string",
-                  "description":"起始地全路径" 
-                  },
-                  "endFullPath":{
-                  "type": "string",
-                  "description":"目的地全路径" 
-                  },
+                   "wfpysParentId": {
+                    "type": "array",
+                    "description":"经营范围id",
+                    "xml": {
+                        "name": "wfpysParentId",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                  "wfpysName": {
+                    "type": "array",
+                    "description":"经营范围名",
+                    "xml": {
+                        "name": "wfpysName",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                  "startFullPath": {
+                    "type": "array",
+                    "description":"起始地",
+                    "xml": {
+                        "name": "startFullPath",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                  "endFullPath": {
+                    "type": "array",
+                    "description":"目的地",
+                    "xml": {
+                        "name": "endFullPath",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                   "startProvinceId":{
                  "type": "string",
                  "description":" 出发地省级id" 
@@ -3912,10 +4301,6 @@
                  "type": "string",
                  "description":"目的地区级id" 
                   },
-                  "wfpysParentId":{
-                  "type": "string",
-                  "description":"经营范围ID" 
-                 },
                  "habitatAddress":{
                   "type": "string",
                   "description":"详细地址" 
@@ -3923,10 +4308,6 @@
                  "carNumber":{
                   "type": "string",
                   "description":"车牌号码" 
-                 },
-                 "wfpysName":{
-                  "type": "string",
-                  "description":"经营范围" 
                  },
                  "carName":{
                   "type": "string",
@@ -4017,10 +4398,17 @@
                  "type": "string",
                  "description":"用户认证类型(1:司机,2:运输企业,3:产生企业)" 
                     },
-                 "ScopeID":{
-                 "type": "string",
-                 "description":"经验范围id" 
-                  },
+                 "scope": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "scope",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                   "bINumber":{
                   "type": "string",
                   "description":"营业执照号" 
@@ -4110,6 +4498,26 @@
             }
         },
         
+      
+          "CarNoRepeatForm": {
+           "type": "object",
+            "properties": {
+                 "userID":{
+                 "type": "string",
+                 "description":"用户id" 
+                  },
+                 "carNumber":{
+                 "type": "string",
+                 "description":"车牌号码" 
+                  }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        
           "AddVehicleForm": {
            "type": "object",
             "properties": {
@@ -4121,14 +4529,28 @@
                  "type": "string",
                  "description":"车牌号码" 
                   },
-                  "wfpysParentId":{
-                 "type": "string",
-                 "description":"经营范围id" 
-                  },
-                  "wfpysName":{
-                 "type": "string",
-                 "description":"经营范围名称" 
-                  },
+                  "wfpysName": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "wfpysName",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
+                 "wfpysParentId": {
+                    "type": "array",
+                    "description":"经营范围id",
+                    "xml": {
+                        "name": "wfpysParentId",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                    "carName":{
                   "type": "string",
                   "description":"车辆类型" 
@@ -4210,9 +4632,9 @@
                     "properties": {
                       "statusCode":{
                           "type": "string",
-                          "description":"" 
+                          "description":"业务状态吗（0：用户当前版本为旧版本，1：用户当前版本为最新版本，2：后台暂未发布APP的最新版本）" 
                         },
-                         "version":{
+                         "Version":{
                     "description":"版本响应信息" ,
                     "type": "object",
                     "properties": {
@@ -4222,33 +4644,21 @@
                         },
                            "type":{
                           "type": "string",
-                          "description":"版本类型(0:车App 1:货app)" 
+                          "description":"版本类型(0:运输IOS;1:运输Android;2:产生IOS;3:产生Android)" 
                         },
-                        "cheNum":{
+                        "num":{
                           "type": "string",
-                          "description":"车APP版本号" 
+                          "description":"版本号" 
                         },
-                        "huoNum":{
+                        "description":{
                           "type": "string",
-                          "description":"货APP版本号" 
+                          "description":"版本说明" 
                         },
-                        "cheDescription":{
+                           "url":{
                           "type": "string",
-                          "description":"车APP版本描述" 
+                          "description":"下载链接" 
                         },
-                        "huoDescription":{
-                          "type": "string",
-                          "description":"货APP版本描述" 
-                        },
-                           "cheUrl":{
-                          "type": "string",
-                          "description":"车APP下载地址" 
-                        },
-                           "huoUrl":{
-                          "type": "string",
-                          "description":"货APP下载地址" 
-                        },
-                           "updateTime":{
+                          "updateTime":{
                           "type": "string",
                           "description":"更新时间" 
                         },
@@ -4646,12 +5056,12 @@
                                 "description":"车辆尺寸单位(不填默认 米)" 
                               },
                               "wfpysParentId":{
-                                "type": "string",
-                                "description":"经营范围id" 
+                                "type": "list",
+                                "description":"经营范围id列表" 
                               },
                               "wfpysName":{
-                                "type": "string",
-                                "description":"经验范围名称" 
+                                "type": "list",
+                                "description":"经验范围名称列表" 
                               },
                                "carNumber":{
                               "type": "string",
@@ -4842,14 +5252,6 @@
                               "type": "string",
                               "description":"车源状态 (0:下架,1:上架,2:审核中,3:审核失败,4:已完成)" 
                               },
-                              "startFullPath":{
-                              "type": "string",
-                              "description":"起始地全路径" 
-                              },
-                              "endFullPath":{
-                              "type": "string",
-                              "description":"目的地全路径" 
-                              },
                               "startProvinceId":{
                               "type": "string",
                               "description":" 出发地省级id" 
@@ -4874,25 +5276,21 @@
                  "type": "string",
                  "description":"目的地区级id" 
                   },
-                  "hxUserName":{
-                  "type": "string",
-                  "description":"环信账号" 
-                  },
                   "wfpysList":{
                   "type": "list",
                   "description":"经营范围列表" 
                   },
                   "wfpysParentId":{
-                  "type": "string",
-                  "description":"危废品运输界定父类ID" 
+                  "type": "list",
+                  "description":"危废品运输界定ID列表" 
                   },
-                  "wfpysId":{
-                  "type": "string",
-                  "description":"危废品运输界定二级ID" 
+                   "startList":{
+                  "type": "list",
+                  "description":"出发地列表" 
                   },
-                  "wfpysName":{
-                  "type": "string",
-                  "description":"危废品运输界定名称" 
+                  "endList":{
+                  "type": "list",
+                  "description":"目的地列表" 
                   },
                   "barCount ":{
                   "type": "string",
@@ -4904,6 +5302,39 @@
                   }
                }
             }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+                          "bespeak": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"0:states错误;1:成功;2:(type)商品类型错误;3:询价or议价信息不存在;4:该用户不是被议价or询价人;5:用户已接受询价议价" 
+                        }
                     }
                 }
             },
@@ -5068,14 +5499,6 @@
                               "type": "string",
                               "description":"描述" 
                               },
-                              "startFullPath":{
-                              "type": "string",
-                              "description":"装货地全路径" 
-                              },
-                              "endFullPath":{
-                              "type": "string",
-                              "description":"卸货地全路径" 
-                              },
                               "storeName":{
                               "type": "string",
                               "description":"企业名称" 
@@ -5096,10 +5519,6 @@
                               "tankMaterialName":{
                               "type": "string",
                               "description":"罐体材质" 
-                              }, 
-                              "wfpysName":{
-                              "type": "string",
-                              "description":"危废品运输界定名称" 
                               }, 
                               "carLength":{
                               "type": "string",
@@ -5129,20 +5548,20 @@
                               "type": "string",
                               "description":"卸货详细地址" 
                               },
-                              "hxUserName":{
-                              "type": "string",
-                              "description":"环信账号" 
-                              },
-                                 "wfpysList":{
-                              "type": "string",
+                               "wfpysList":{
+                              "type": "list",
                               "description":"经营范围列表" 
                               },
+                              "wfpysParentId":{
+                              "type": "list",
+                              "description":"经营范围id列表" 
+                              },
                                  "startList":{
-                              "type": "string",
+                              "type": "list",
                               "description":"出发地省市区集合" 
                               },
                                  "endList":{
-                              "type": "string",
+                              "type": "list",
                               "description":"目的地省市区集合" 
                               },  
                               "registrationID":{
@@ -5297,14 +5716,6 @@
                               "type": "string",
                               "description":"描述" 
                               },
-                              "startFullPath":{
-                              "type": "string",
-                              "description":"起始地全路径" 
-                              },
-                              "endFullPath":{
-                              "type": "string",
-                              "description":"目的地全路径" 
-                              },
                               "startProvinceId":{
                               "type": "string",
                               "description":" 出发地省级id" 
@@ -5329,22 +5740,23 @@
                               "type": "string",
                               "description":"目的地区级id" 
                               },
-                              "hxUserName":{
-                              "type": "string",
-                              "description":"环信账号" 
-                              },
                               "wfpysParentId":{
-                              "type": "string",
-                              "description":"危废品运输界定父类ID" 
-                              },
-                              "wfpysId":{
-                              "type": "string",
-                              "description":"危废品运输界定二级ID" 
+                              "type": "list",
+                              "description":"经营范围ID列表" 
                               },
                               "wfpysName":{
-                              "type": "string",
-                              "description":"危废品运输界定名称" 
+                              "type": "list",
+                              "description":"经营范围列表" 
+                              },
+                              "startList":{
+                              "type": "list",
+                              "description":"起始地列表" 
+                              },
+                              "endList":{
+                              "type": "list",
+                              "description":"目的地列表" 
                               }
+                              
                           }
                         }
                     }
@@ -5407,6 +5819,417 @@
             }
         },
         
+               "getBespeak": {
+           "type": "object",
+            "properties": {
+                "meta": {
+                    "type": "object",
+                   
+                    "properties": {
+                       "success":{
+                          "type": "string",
+                          "description":"是否出现运行期异常" 
+                        },
+                        "message":{
+                          "type": "string",
+                          "description":"报错信息" 
+                        }
+                     }
+                 },
+                "data":{
+                    "type": "object",
+                    "properties": {
+                      "statusCode":{
+                          "type": "string",
+                          "description":"业务状态码(0:商品类型错误,1:获取成功,2:预约状态错误)" 
+                        },
+                         "pager":{
+                           "type": "object",
+                           "description":"分页信息",
+                           "properties": {
+                                  "fromRow":{
+                              "type": "string",
+                              "description":"查询起始记录" 
+                              },
+                              "toRow":{
+                              "type": "string",
+                              "description":"查询结束记录" 
+                              },
+                               "totalRow":{
+                              "type": "string",
+                              "description":"总记录数" 
+                              },
+                               "currentPage":{
+                              "type": "string",
+                              "description":"当前页面数" 
+                              },
+                               "totalPage":{
+                              "type": "string",
+                              "description":"总页面数" 
+                              },
+                               "rowsPerPage":{
+                              "type": "string",
+                              "description":"每页显示记录数" 
+                              },
+                               "flag":{
+                              "type": "string",
+                              "description":"是否需要翻页" 
+                              }
+                            }
+                      },
+                       "bespeakList":{
+                          "type": "object",
+                          "description":"用户预约信息集合",
+                          "properties": {
+                             "bespeakId":{
+                              "type": "string",
+                              "description":"预约发起人ID" 
+                              },
+                              "endId":{
+                              "type": "string",
+                              "description":"预约接受人ID" 
+                              },
+                              "goodsId":{
+                              "type": "string",
+                              "description":"预约商品ID" 
+                              },
+                              "type":{
+                              "type": "string",
+                              "description":"预约商品类型(0:车源,1:货源)" 
+                              },
+                               "startFullPaths":{
+                              "type": "array",
+                              "description":"议价起始地" 
+                              },
+                              "endFullPaths":{
+                              "type": "array",
+                              "description":"议价目的地" 
+                              },
+                              "price":{
+                              "type": "string",
+                              "description":"价格" 
+                              },
+                              "contactMan":{
+                              "type": "string",
+                              "description":"联系人" 
+                              },
+                              "contactPhone":{
+                              "type": "string",
+                              "description":"联系电话" 
+                              },
+                              "createTime":{
+                              "type": "string",
+                              "description":"预约创建时间" 
+                              },
+                              "updateTime":{
+                              "type": "string",
+                              "description":"预约更新时间" 
+                              },
+                              "endTime":{
+                              "type": "string",
+                              "description":"预约货源信息" 
+                              },
+                              "Goods":{
+                              "type": "object",
+                              "description":"议价货源信息",
+                               "properties": {
+                                  "id":{
+                                  "type": "string",
+                                  "description":"货源id"
+                                  },
+                                  "storeId":{
+                                  "type": "string",
+                                  "description":"企业ID" 
+                                  },
+                                  "startProvinceId":{
+                                  "type": "string",
+                                  "description":" 出发地省级id" 
+                                  },
+                                  "endProvinceId":{
+                                  "type": "string",
+                                  "description":" 目的地省级id" 
+                                  },
+                                  "startCityId":{
+                                  "type": "string",
+                                  "description":"出发地市级id" 
+                                  },
+                                  "endCityId":{
+                                  "type": "string",
+                                  "description":"  目的地市级id" 
+                                  },
+                                  "startAreaId":{
+                                  "type": "string",
+                                  "description":"出发地区级id" 
+                                  },
+                                  "endAreaId":{
+                                  "type": "string",
+                                  "description":"目的地区级id" 
+                                  },
+                                  "name":{
+                                  "type": "string",
+                                  "description":"运输名称" 
+                                  },
+                                  "supplyName":{
+                                  "type": "string",
+                                  "description":"货源名称" 
+                                  },
+                                  "wfpTotal":{
+                                  "type": "string",
+                                  "description":"货源重量" 
+                                  },
+                                  "createTime":{
+                                  "type": "string",
+                                  "description":"创建时间(格式:YYYY-MM-DD HH24:MI:SS)" 
+                                  },
+                                  "updateTime":{
+                                  "type": "string",
+                                  "description":"更新时间(格式:YYYY-MM-DD HH24:MI:SS)" 
+                                  },
+                                  "endTime":{
+                                  "type": "string",
+                                  "description":"截止时间(格式:YYYY-MM-DD HH24:MI:SS) " 
+                                  },
+                                  "status":{
+                                  "type": "string",
+                                  "description":"上下架状态" 
+                                  },
+                                  "checkTime":{
+                                  "type": "string",
+                                  "description":"审核时间(格式:YYYY-MM-DD HH24:MI:SS)" 
+                                  },
+                                  "checkMan":{
+                                  "type": "string",
+                                  "description":"审核人" 
+                                  },
+                                  "checkNote":{
+                                  "type": "string",
+                                  "description":"审核备注" 
+                                  },
+                                  "checkStatus":{
+                                  "type": "string",
+                                  "description":" 审核状态 0--未审核 1--已审核 2--审核失败" 
+                                  },
+                                  "linkMan":{
+                                  "type": "string",
+                                  "description":"联系人" 
+                                  },
+                                  "phone":{
+                                  "type": "string",
+                                  "description":"联系电话" 
+                                  },
+                                  "content":{
+                                  "type": "string",
+                                  "description":"描述" 
+                                  },
+                                  "startFullPath":{
+                                  "type": "string",
+                                  "description":"装货地全路径" 
+                                  },
+                                  "endFullPath":{
+                                  "type": "string",
+                                  "description":"卸货地全路径" 
+                                  },
+                                  "storeName":{
+                                  "type": "string",
+                                  "description":"企业名称" 
+                                  },
+                                  "unit":{
+                                  "type": "string",
+                                  "description":"单位 默认为吨" 
+                                  },
+                                  "carName":{
+                                  "type": "string",
+                                  "description":"车辆类型" 
+                                  },
+                              
+                                  "categoryName":{
+                                  "type": "string",
+                                  "description":"货物类别名称" 
+                                  }, 
+                                  "tankMaterialName":{
+                                  "type": "string",
+                                  "description":"罐体材质" 
+                                  }, 
+                                  "wfpysName":{
+                                  "type": "string",
+                                  "description":"危废品运输界定名称" 
+                                   }, 
+                                  "carLength":{
+                                  "type": "string",
+                                  "description":"车长" 
+                                  }, 
+                                  "cargoVolume":{
+                                  "type": "string",
+                                  "description":"货物体积" 
+                                  },
+                                  "validTime":{
+                                  "type": "string",
+                                  "description":"有效时限" 
+                                  },
+                                 "startHabitatAddress":{
+                                 "type": "string",
+                                 "description":"装货详细地址" 
+                                 },
+                                 "endHabitatAddress":{
+                                 "type": "string",
+                                 "description":"卸货详细地址" 
+                                 },
+                                 "hxUserName":{
+                                 "type": "string",
+                                  "description":"环信账号" 
+                                  }
+                                } 
+                              },
+                              "carSource":{
+                              "type": "object",
+                              "description":"议价车源信息",
+                              "properties": {
+                               "id":{
+                               "type": "string",
+                               "description":"车源id" 
+                               },
+                               "storeId":{
+                               "type": "string",
+                               "description":"企业ID" 
+                               },
+                               "wfpTotal":{
+                               "type": "string",
+                               "description":"车载" 
+                               },
+                               "createTime":{
+                               "type": "string",
+                               "description":"创建时间(格式:YYYY-MM-DD HH24:MI:SS)" 
+                               },
+                               "updateTime":{
+                               "type": "string",
+                               "description":"更新时间(格式:YYYY-MM-DD HH24:MI:SS)" 
+                               },
+                               "endTime":{
+                               "type": "string",
+                               "description":"有效时间(格式:YYYY-MM-DD HH24:MI:SS)" 
+                               },
+                               "linkMan":{
+                               "type": "string",
+                               "description":"联系人" 
+                               },
+                               "phone":{
+                               "type": "string",
+                               "description":"联系电话" 
+                               },
+                               "storeName":{
+                               "type": "string",
+                               "description":"企业名称" 
+                               },
+                               "unit":{
+                               "type": "string",
+                               "description":"重量单位 " 
+                               },
+                               "carName":{
+                               "type": "string",
+                               "description":"车辆类型" 
+                               },
+                               "tankMaterialName":{
+                               "type": "string",
+                               "description":"罐体材质" 
+                               },
+                               "carLength":{
+                               "type": "string",
+                               "description":"车辆尺寸" 
+                               },
+                               "carNumber":{
+                               "type": "string",
+                               "description":"车牌号" 
+                               },
+                               "status":{
+                               "type": "string",
+                               "description":"状态 (0:下架,1:上架)" 
+                               },
+                               "habitatAddress":{
+                               "type": "string",
+                               "description":"详细地址" 
+                               },
+                              "checkTime":{
+                              "type": "string",
+                              "description":"审核时间" 
+                              },
+                              "checkMan":{
+                              "type": "string",
+                              "description":"审核人" 
+                              },
+                              "checkNote":{
+                              "type": "string",
+                              "description":"审核备注" 
+                              },
+                              "checkStatus":{
+                              "type": "string",
+                              "description":"审核状态 0--未审核 1--已审核 2--审核失败" 
+                              },
+                              "content":{
+                              "type": "string",
+                              "description":"描述" 
+                              },
+                              "startFullPath":{
+                              "type": "string",
+                              "description":"起始地全路径" 
+                              },
+                              "endFullPath":{
+                              "type": "string",
+                              "description":"目的地全路径" 
+                              },
+                              "startProvinceId":{
+                              "type": "string",
+                              "description":" 出发地省级id" 
+                               },
+                              "endProvinceId":{
+                              "type": "string",
+                              "description":" 目的地省级id" 
+                              },
+                              "startCityId":{
+                              "type": "string",
+                              "description":"出发地市级id" 
+                              },
+                              "endCityId":{
+                              "type": "string",
+                              "description":"  目的地市级id" 
+                              },
+                              "startAreaId":{
+                              "type": "string",
+                              "description":"出发地区级id" 
+                              },
+                              "endAreaId":{
+                              "type": "string",
+                              "description":"目的地区级id" 
+                              },
+                              "hxUserName":{
+                              "type": "string",
+                              "description":"环信账号" 
+                              },
+                              "wfpysParentId":{
+                              "type": "string",
+                              "description":"危废品运输界定父类ID" 
+                              },
+                              "wfpysId":{
+                              "type": "string",
+                              "description":"危废品运输界定二级ID" 
+                              },
+                              "wfpysName":{
+                              "type": "string",
+                              "description":"危废品运输界定名称" 
+                              }
+                               }
+                              }
+                           }
+                         }
+                    }
+                }
+            },
+            
+            "xml": {
+                "name": "User"
+            }
+        },
+        
+        
         
             "login": {
            "type": "object",
@@ -5430,7 +6253,7 @@
                     "properties": {
                       "statusCode":{
                           "type": "string",
-                          "description":"业务状态码( 0:未确认登录类型 ,1:登录成功,2:用户名密码不正确 ,3:验证码不正确 ,4:密码为空 ,5:手机号或用户名为空,6:用户类型错误[用户类型不正确,登陆平台不正确])" 
+                          "description":"业务状态码( 0:未确认登录类型 ,1:登录成功,2:用户名密码不正确 ,3:验证码不正确 ,4:密码为空 ,5:手机号或用户名为空,6:用户类型错误[用户类型不正确,登陆平台不正确],7:账号未注册,用户不存在)" 
                         },
                          "user":{
                     "description":"用户信息" ,
@@ -5484,10 +6307,17 @@
                           "type": "string",
                           "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
                         },
-                        "Scope":{
-                          "type": "string",
-                          "description":"经营范围" 
-                        },
+                        "Scope": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "scope",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                         "nickName":{
                           "type": "string",
                           "description":"用户编辑资料昵称" 
@@ -5684,10 +6514,17 @@
                           "type": "string",
                           "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
                         },
-                        "Scope":{
-                          "type": "string",
-                          "description":"经营范围" 
-                        },
+                        "Scope": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "scope",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                         "nickName":{
                           "type": "string",
                           "description":"用户编辑资料昵称" 
@@ -5854,10 +6691,17 @@
                           "type": "string",
                           "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
                         },
-                        "Scope":{
-                          "type": "string",
-                          "description":"经营范围" 
-                        },
+                        "Scope": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "scope",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                         "nickName":{
                           "type": "string",
                           "description":"用户编辑资料昵称" 
@@ -6025,10 +6869,17 @@
                           "type": "string",
                           "description":"认证状态(0:未认证, 1:认证中 ,2:已认证,3:认证失败 ,默认:0)"
                         },
-                        "Scope":{
-                          "type": "string",
-                          "description":"经营范围" 
-                        },
+                        "Scope": {
+                    "type": "array",
+                    "description":"经营范围",
+                    "xml": {
+                        "name": "scope",
+                        "wrapped": true
+                    },
+                    "items": {
+                        "type": "string"
+                    }
+                 },
                         "nickName":{
                           "type": "string",
                           "description":"用户编辑资料昵称" 
